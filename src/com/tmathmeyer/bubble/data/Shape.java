@@ -6,12 +6,11 @@ import java.awt.Polygon;
 import java.util.LinkedList;
 import java.util.List;
 
-import com.tmathmeyer.bubble.model.ImmutableObject;
 import com.tmathmeyer.geom.Point;
 import com.tmathmeyer.geom.Vector;
 import com.tmathmeyer.geom.shape.Circle;
 
-public class Shape implements ImmutableObject
+public class Shape
 {
 	private final List<Point> perimeter;
 	

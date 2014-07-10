@@ -7,7 +7,7 @@ import com.tmathmeyer.bubble.data.Shape;
 import com.tmathmeyer.geom.Point;
 import com.tmathmeyer.geom.shape.Circle;
 
-public class ShapeHolder
+public class ShapeHolder implements IntersectionHolder
 {
 	private List<Shape> shapes = new LinkedList<Shape>();
 	private Shape shape;
@@ -24,13 +24,11 @@ public class ShapeHolder
 		}
 	}
 	
-	
 	public void finish()
 	{
 		shapes.add(shape);
 		shape = null;
 	}
-	
 	
 	public List<Shape> getAllShapes()
 	{
@@ -39,25 +37,24 @@ public class ShapeHolder
 		return shapes;
 	}
 
-
 	public void clear() {
 		shapes = new LinkedList<Shape>();
 		shape = null;
 	}
 	
-	public boolean intersectsALl(Circle c)
+	public boolean intersectsAny(Circle c)
 	{
-		for(Shape s : shapes)
+		for(Shape s : getAllShapes())
 		{
-			if (s.intersects(c))
+			if (s != null && s.intersects(c))
 			{
 				return true;
 			}
 		}
-		if (shape != null && shape.intersects(c))
-		{
-			return true;
-		}
-		return shapes.size() == 0;
+		return shapes.size() == 0 && shape == null;
 	}
+	
+	public static final ShapeHolder INSTANCE = new ShapeHolder();
+	
+	private ShapeHolder() {}
 }

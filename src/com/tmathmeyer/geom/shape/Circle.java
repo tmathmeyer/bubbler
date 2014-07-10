@@ -48,10 +48,17 @@ public class Circle
 		double aa = a.angle();
 		double ba = b.angle();
 		double na = (aa/2.0) + (ba/2.0);
+		int rad = (int) (radius*1.2);
 		
-		Vector x = new Vector(center, radius, na);
-		Vector y = new Vector(center, -radius, na);
+		Vector x = new Vector(center, rad, na);
+		Vector y = new Vector(center, -rad, na);
 		
 		return new Vector(x.getEnd(), y.getEnd());
+	}
+	
+	public boolean intersects(Circle c)
+	{
+		Vector v = new Vector(c.getCenter(), this.getCenter());
+		return v.distance() < c.getRadius() + this.getRadius()+10;
 	}
 }

@@ -10,19 +10,17 @@ import com.tmathmeyer.geom.Point;
 
 public class DrawingPanelClickListener implements MouseListener
 {
-	private final ShapeHolder sh;
 	private final JPanel p;
 	
-	public DrawingPanelClickListener(ShapeHolder s, JPanel p)
+	public DrawingPanelClickListener(JPanel p)
 	{
-		sh = s;
 		this.p = p;
 	}
 
 	@Override
 	public void mouseClicked(MouseEvent click)
 	{
-		sh.addPoint(new Point(click.getX(), click.getY()));
+		ShapeHolder.INSTANCE.addPoint(new Point(click.getX(), click.getY()));
 		p.repaint();
 	}
 
